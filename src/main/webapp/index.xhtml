@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Distribution License v. 1.0, which is available at
+    http://www.eclipse.org/org/documents/edl-v10.php.
+
+    SPDX-License-Identifier: BSD-3-Clause
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	template="./templates/mainTemplate.xhtml">
+
+	<ui:define name="title">#{bundle.sitioAcronimo}</ui:define> 
+	<ui:define name="main">
+
+		<div class="panel">
+			<div class="panel-title">#{bundle.adminUsuarios}</div>
+			<div class="panel-content">
+				<h:form>
+					<div>
+						<h:commandLink id="registroUsuario" class="action-link"
+							value="#{bundle.registroUsuarios}" action="usuarios" />
+					</div>
+					<div>
+						<h:commandLink id="registroDependencias" class="action-link"
+							value="#{bundle.registroDependencias}" action="dependencias" />
+					</div>
+					<div>
+						<h:commandLink id="listaRoles" value="#{bundle.registroRoles}"
+							class="action-link" action="roles" />
+					</div>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

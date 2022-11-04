@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--
+
+    Copyright (c) 2018, 2021 Oracle and/or its affiliates. All rights reserved.
+
+    This program and the accompanying materials are made available under the
+    terms of the Eclipse Distribution License v. 1.0, which is available at
+    http://www.eclipse.org/org/documents/edl-v10.php.
+
+    SPDX-License-Identifier: BSD-3-Clause
+
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core" 
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      			xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="./templates/mainTemplate.xhtml">
+	
+	<ui:define name="title">#{bundle.roles}</ui:define>
+	<ui:define name="main">
+		<h:form id="rolForm">
+            <h1>#{bundle.roles}</h1>
+            
+            <h2>#{bundle.registroRoles}</h2>
+            <p>
+	            <label for="nombre">#{bundle.rolNombre}:</label>
+	            <h:inputText id="nombre" value="#{rolBean.nombre}" 
+	            	required="true" requiredMessage="#{bundle.rolNombreReq}" />
+	            <h:message styleClass="error-message" for="nombre"/>
+            </p>
+            <p>
+	            <label for="clave">#{bundle.rolClave}:</label>
+	            <h:inputText id="clave" value="#{rolBean.clave}" 
+	            	required="true" requiredMessage="#{bundle.rolClaveReq}" />
+	            <h:message styleClass="error-message" for="clave"/>
+            </p>
+            
+            <p>
+            	<h:commandButton id="agregaRol" styleClass="btn-submit" value="#{bundle.registrar}" >
+            		<f:ajax execute="@all" listener="#{rolBean.agregarRolAjax}" render="roles rolForm"  />
+            	</h:commandButton>
+            </p>
+        </h:form>
+        
+        <h2>#{bundle.rolesRegistrados}</h2>
+        <h:dataTable id="roles" class="tabla-listado"
+                         value="#{rolBean.roles}"
+                         var="rol"
+                         summary="#{bundle.rolesRegistrados}" >
+
+                <h:column>
+                    <f:facet name="header">
+                        #{bundle.rolNombre}
+                    </f:facet>
+                    <h:outputText value="#{rol.nombre}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        #{bundle.rolClave}
+                    </f:facet>
+                    <h:outputText value="#{rol.clave}"/>
+                </h:column>
+                
+            </h:dataTable>
+        	<h:form>
+        		<h:commandLink id="inicio" styleClass="nav-link" value="#{bundle.inicio}" action="index" />	
+			</h:form>
+	</ui:define>    
+</ui:composition>
